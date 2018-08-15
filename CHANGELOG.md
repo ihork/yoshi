@@ -1,5 +1,29 @@
 # Changelog
 
+## 3.5.0 (Aug 14, 2018)
+
+#### :nail_care: Enhancement
+* `jest-yoshi-preset`
+  * [#495](https://github.com/wix/yoshi/pull/495) Initial version of `jest-yoshi-preset`
+
+## 3.4.4 (Aug 14, 2018)
+
+#### :bug: Bug
+* `create-yoshi-app`
+  * [#490](https://github.com/wix/yoshi/pull/490) Fix default global git user config
+* `yoshi`
+  * [#496](https://github.com/wix/yoshi/pull/496) Added support for two CLI options when using Jest: runInBand and forceExit
+  * [#497](https://github.com/wix/yoshi/pull/497) Add a unique `jsonpFunction` for each project according to project name
+
+## 3.4.3 (Aug 7, 2018)
+
+#### :bug: Bug
+* `create-yoshi-app`
+  * [#478](https://github.com/wix/yoshi/pull/478) Add Support for `git`'s include directive
+  * [#474](https://github.com/wix/yoshi/pull/482) Fix a bug where choosing `node-library` option resulted in an empty project
+* `yoshi`
+  * [#483](https://github.com/wix/yoshi/pull/483) Upgrade `externalize-realtive-module-loader` to a versino that supports windows
+
 ## 3.4.2 (Aug 2, 2018)
 * `create-yoshi-app`
   * [#474](https://github.com/wix/yoshi/pull/474) Update post create messages

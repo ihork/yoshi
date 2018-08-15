@@ -3,6 +3,8 @@ const path = require('path');
 const glob = require('glob');
 const mkdirp = require('mkdirp');
 const chokidar = require('chokidar');
+const chalk = require('chalk');
+const { validate } = require('jest-validate');
 const childProcess = require('child_process');
 const detect = require('detect-port');
 const { mergeWith } = require('lodash/fp');
@@ -225,4 +227,52 @@ module.exports.getProcessOnPort = async port => {
   } catch (e) {
     return null;
   }
+};
+
+module.exports.toIdentifier = str => {
+  const IDENTIFIER_NAME_REPLACE_REGEX = /^([^a-zA-Z$_])/;
+  const IDENTIFIER_ALPHA_NUMERIC_NAME_REPLACE_REGEX = /[^a-zA-Z0-9$]+/g;
+
+  if (typeof str !== 'string') return '';
+  return str
+    .replace(IDENTIFIER_NAME_REPLACE_REGEX, '_$1')
+    .replace(IDENTIFIER_ALPHA_NUMERIC_NAME_REPLACE_REGEX, '_');
+};
+
+module.exports.loadConfig = () => {
+  const configPath = path.join(process.cwd(), 'jest-yoshi.config.js');
+
+  if (!fs.existsSync(configPath)) {
+    throw new Error(
+      `Could not find 'jest-yoshi.config.js' file, please create one at the root of your project.`,
+    );
+  }
+
+  let config;
+
+  try {
+    config = require(configPath);
+  } catch (error) {
+    throw new Error(
+      `Config ${chalk.bold(configPath)} is invalid:\n  ${error.message}`,
+    );
+  }
+
+  validate(config, {
+    recursiveBlacklist: ['puppeteer'],
+    exampleConfig: {
+      bootstrap: {
+        setup: async () => {},
+        teardown: async () => {},
+      },
+      server: {
+        filename: 'path/to/some/file',
+        port: 1234,
+      },
+    },
+    comment:
+      'Please refer to https://github.com/wix/yoshi for more information...',
+  });
+
+  return config;
 };
