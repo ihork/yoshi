@@ -15,7 +15,7 @@
     "customPublish": "node ../../scripts/customPublish.js"
   },
   "dependencies": {
-    "@wix/depkeeper-preset-yoshi": "~1.0.0",
+    "@wix/depkeeper-preset-yoshi": "^1.0.0",
     "@wix/externalize-relative-module-loader": "~1.0.0",
     "autoprefixer": "~7.1.2",
     "babel-jest": "~20.0.3",
