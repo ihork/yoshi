@@ -14,7 +14,7 @@
     "test:watch": "mocha './test/{,!(fixtures)/**/}/*.spec.js' --watch"
   },
   "dependencies": {
-    "@wix/depkeeper-preset-yoshi": "~1.0.0",
+    "@wix/depkeeper-preset-yoshi": "^1.0.0",
     "autoprefixer": "~7.1.2",
     "babel-eslint": "^8.2.3",
     "babel-loader": "~7.1.1",
