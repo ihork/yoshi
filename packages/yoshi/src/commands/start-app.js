@@ -180,12 +180,6 @@ module.exports = async () => {
 
   try {
     await serverProcess.initialize();
-    const serverLogStream = fs.createWriteStream(
-      path.join(TARGET_DIR, 'server.log'),
-    );
-    [serverProcess.child.stderr, serverProcess.child.stdout].forEach(stream =>
-      stream.pipe(serverLogStream),
-    );
   } catch (error) {
     console.log();
     console.log(
